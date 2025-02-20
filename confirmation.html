@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calliope</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background-pattern.jpg') repeat, #1a1a1a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 90%;
+            width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-align: center;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+        .logo img {
+            width: 20vw;
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+        .order-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #5ec1b9;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+            border: 2px solid white;
+        }
+        .order-button:hover {
+            background: #4aa9a1;
+        }
+        .footer {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px -2px 10px rgba(0,0,0,0.5);
+            position: relative;
+            flex-wrap: wrap;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #5ec1b9;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .footer img {
+            width: 25vw;
+            max-width: 150px;
+            height: auto;
+        }
+        .contact-section {
+            text-align: center;
+            flex-grow: 1;
+        }
+        #contact-info {
+            display: none;
+            margin-top: 10px;
+            color: white;
+        }
+    </style>
+    <script>
+        function toggleContactInfo() {
+            var info = document.getElementById("contact-info");
+            if (info.style.display === "none") {
+                info.style.display = "block";
+            } else {
+                info.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="media_copie/image_calliope.jpg" alt="Logo de l'Entreprise"/>
+        </div>
+        <h2>Merci pour votre achat !</h2>
+    <p>Votre payement a  bien été reçu.</p>
+    </div>
+    
+    
+    
+    <div class="footer">
+        <img src="media_copie/lje.jpg" alt="lje"/>
+        <div class="contact-section">
+            <p><a onclick="toggleContactInfo()">Contact</a></p>
+            <div id="contact-info">
+                <p>Email : <a href="mailto:calliope.lje@gmail.com">calliope.lje@gmail.com</a></p>
+                <p>Instagram : <a href="https://www.instagram.com/calliope_lje" target="_blank">@calliope_lje</a></p>
+                <p>Facebook : <a href="https://www.facebook.com/profile.php?id=61568158266431" target="_blank">@calliope lje</a></p>
+            </div>
+        </div>
+        <img src="media_copie/esh.jpg" alt="esh"/>
+    </div>
+</body>
+</html>
