@@ -43,7 +43,7 @@ if (strcmp($response, "VERIFIED") == 0) {
         // Enregistrer les informations du paiement de manière sécurisée
         $data = "Paiement reçu de $payer_email\nMontant : $montant $devise\nTransaction ID : $transaction_id\nDate : " . date("Y-m-d H:i:s");
         $encrypted_data = encryptData($data, $encryption_key);
-        file_put_contents("paiements_secure.txt", $encrypted_data . "\n", FILE_APPEND);
+        file_put_contents(__DIR__ . "/paiements_secure.txt", $encrypted_data . "\n", FILE_APPEND);
         
         // Envoyer un email de confirmation
         $to = "calliope.commande@gmail.com"; // Remplacez par votre adresse email
