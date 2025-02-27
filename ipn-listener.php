@@ -1,4 +1,21 @@
 <?php
+// Active le mode debug
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Connexion à la base SQLite
+$db = new SQLite3('paiements.db');
+
+// Vérifier si la table existe, sinon la créer
+$db->exec("CREATE TABLE IF NOT EXISTS paiements (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    payer_email TEXT,
+    montant REAL,
+    devise TEXT,
+    statut TEXT,
+    transaction_id TEXT UNIQUE,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)");
 
 // Lire les données envoyées par PayPal
 $raw_post_data = file_get_contents('php://input');
@@ -25,13 +42,13 @@ function encryptData($data, $key) {
 // Vérification du paiement
 if (strcmp($response, "VERIFIED") == 0) {
     // Infos du paiement
-    $payer_email = $_POST['payer_email'];
-    $payment_status = $_POST['payment_status'];
-    $transaction_id = $_POST['txn_id'];
-    $montant = $_POST['mc_gross'];
-    $devise = $_POST['mc_currency'];
-    $receiver_email = $_POST['receiver_email'];
-
+    $payer_email = $_POST['payer_email'] ?? 'inconnu';
+    $payment_status = $_POST['payment_status'] ?? 'Échec';
+    $transaction_id = $_POST['txn_id'] ?? 'inconnu';
+    $montant = $_POST['mc_gross'] ?? 0;
+    $devise = $_POST['mc_currency'] ?? 'EUR';
+    $receiver_email = $_POST['receiver_email'] ?? '';
+    
     // Vérifier que le paiement est bien destiné à votre compte PayPal
     $mon_email_paypal = "calliope.commande@gmail.com"; // Remplacez par votre email PayPal
     if ($receiver_email != $mon_email_paypal) {
@@ -53,5 +70,6 @@ if (strcmp($response, "VERIFIED") == 0) {
     }
 }
 
+// Répondre à PayPal
+header("HTTP/1.1 200 OK");
 ?>
-
